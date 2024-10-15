@@ -11,13 +11,9 @@ appRoutes
   // Middleware to add the RootLayout to all routes
   .use(
     "*",
-    jsxRenderer(({ children, title, description, path }) => {
-      return (
-        <RootLayout title={title} description={description} path={path}>
-          {children}
-        </RootLayout>
-      );
-    })
+    jsxRenderer(({ children, ...rest }) => (
+      <RootLayout {...rest}>{children}</RootLayout>
+    ))
   )
   // Routes
   .get("/", (c) =>

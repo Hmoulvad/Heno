@@ -1,11 +1,23 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@hono/hono@^4.6.5": "4.6.5"
+    "jsr:@hono/hono@^4.6.5": "4.6.5",
+    "npm:typed-htmx@~0.3.1": "0.3.1"
   },
   "jsr": {
     "@hono/hono@4.6.5": {
       "integrity": "68efe4a0ab7c4fb082cb71aa894a25e1c6cfad6d124dc943471e6758a7a1bdee"
+    }
+  },
+  "npm": {
+    "typed-html@3.0.1": {
+      "integrity": "sha512-JKCM9zTfPDuPqQqdGZBWSEiItShliKkBFg5c6yOR8zth43v763XkAzTWaOlVqc0Y6p9ee8AaAbipGfUnCsYZUA=="
+    },
+    "typed-htmx@0.3.1": {
+      "integrity": "sha512-6WSPsukTIOEMsVbx5wzgVSvldLmgBUVcFIm2vJlBpRPtcbDOGC5y1IYrCWNX1yUlNsrv1Ngcw4gGM8jsPyNV7w==",
+      "dependencies": [
+        "typed-html"
+      ]
     }
   },
   "workspace": {

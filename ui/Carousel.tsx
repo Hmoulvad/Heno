@@ -4,7 +4,7 @@ import Button from "ui/Button/Button.tsx";
 import Display from "ui/Display.tsx";
 import ArrowLeft from "ui/Icons/Arrow/Left.tsx";
 import generateRef from "utils/generateRef.tsx";
-import ArrowRight from "./Icons/Arrow/Right.tsx";
+import ArrowRight from "ui/Icons/Arrow/Right.tsx";
 
 type Props = {
   title: string;

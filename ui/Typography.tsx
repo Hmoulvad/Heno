@@ -27,7 +27,7 @@ function getVariantStyle(
   variant: Props<keyof JSX.IntrinsicElements>["variant"],
   className: Props<keyof JSX.IntrinsicElements>["className"]
 ) {
-  let args = [baseStyle];
+  const args = [baseStyle];
   switch (variant) {
     case "body":
       args.push(bodyStyle);

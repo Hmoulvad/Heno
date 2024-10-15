@@ -2,7 +2,7 @@ import { css } from "hono/css";
 import Accordion from "ui/Accordion.tsx";
 import Button from "ui/Button/Button.tsx";
 import Carousel from "ui/Carousel.tsx";
-import Dialog from "ui/Dialog/Dialog.tsx";
+import Dialog from "ui/Dialog.tsx";
 import Display from "ui/Display.tsx";
 import ArrowRight from "ui/Icons/Arrow/Right.tsx";
 import Typography from "ui/Typography.tsx";

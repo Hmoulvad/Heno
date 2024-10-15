@@ -1,4 +1,50 @@
-import { css, keyframes } from "hono/css";
+import { css, cx, keyframes } from "hono/css";
+import type { PropsWithChildren } from "hono/jsx";
+import Button from "ui/Button/Button.tsx";
+import Display from "ui/Display.tsx";
+import X from "ui/Icons/X.tsx";
+import generateId from "utils/generateId.ts";
+
+type Props = PropsWithChildren<{
+  ref: string;
+  type?: "center" | "aside";
+  title: string;
+}>;
+
+export default function Dialog({
+  children,
+  ref,
+  type = "center",
+  title,
+}: Props) {
+  const id = generateId("dialog");
+  return (
+    <dialog
+      id={id}
+      x-ref={ref}
+      x-on:click={`$event.target.id === '${id}' ? $refs.${ref}?.close() : null`}
+      class={getDialogStyle(type)}
+    >
+      <div class={contentStyle}>
+        <header class={headerStyle}>
+          <Display as="h3">{title}</Display>
+          <Button
+            size="small"
+            x-on:click={`$refs.${ref}?.close()`}
+            icon={<X />}
+          />
+        </header>
+        <section class={sectionStyle}>{children}</section>
+      </div>
+    </dialog>
+  );
+}
+
+function getDialogStyle(type: Props["type"]) {
+  const styles = [dialogStyle];
+  styles.push(type === "center" ? centerStyle : asideStyle);
+  return cx(...styles);
+}
 
 const backdropFade = keyframes`
   from {
@@ -9,7 +55,7 @@ const backdropFade = keyframes`
   }
 `;
 
-export const dialogStyle = css`
+const dialogStyle = css`
   display: grid;
   position: fixed;
   inset: 0;
@@ -25,7 +71,7 @@ export const dialogStyle = css`
   }
 `;
 
-export const centerStyle = css`
+const centerStyle = css`
   border-radius: var(--radius-2);
   width: var(--size-15);
   height: var(--size-15);
@@ -44,7 +90,7 @@ export const centerStyle = css`
   }
 `;
 
-export const asideStyle = css`
+const asideStyle = css`
   margin-left: auto;
   height: 100vh;
   width: var(--size-15);
@@ -73,17 +119,17 @@ export const asideStyle = css`
   }
 `;
 
-export const contentStyle = css`
+const contentStyle = css`
   display: grid;
   grid-template-rows: auto 1fr;
 `;
 
-export const headerStyle = css`
+const headerStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 `;
 
-export const sectionStyle = css`
+const sectionStyle = css`
   display: grid;
 `;

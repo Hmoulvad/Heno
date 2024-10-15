@@ -1,15 +1,18 @@
 {
   "imports": {
+    "std/assert": "jsr:@std/assert@^1.0.6",
+    "std/expect": "jsr:@std/expect@^1.0.5",
+    "api/": "./api/",
+    "app/": "./app/",
     "hono": "jsr:@hono/hono@^4.6.5",
     "ky": "npm:ky@^1.7.2",
     "typed-htmx": "npm:typed-htmx@^0.3.1",
-    "utils/": "./utils/",
     "ui/": "./ui/",
-    "api/": "./api/",
-    "app/": "./app/"
+    "utils/": "./utils/"
   },
   "tasks": {
-    "start": "deno run --allow-net main.ts"
+    "start": "deno run --allow-net main.ts",
+    "compile": "deno compile --unstable --allow-net main.ts"
   },
   "compilerOptions": {
     "jsx": "precompile",

@@ -16,7 +16,3 @@ declare module "hono" {
     ): Response;
   }
 }
-
-declare module "bun" {
-  interface Env {}
-}

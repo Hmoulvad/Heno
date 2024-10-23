@@ -18,14 +18,20 @@ export default function Tabs({ tabs, activeTab = 0 }: Props) {
       class={tabsContainerStyle}
       x-data={`{ activeTab: ${activeTab}, setActiveTab(index) { this.activeTab = index } }`}
     >
-      <ul class={tabsStyle}>
+      <ul class={tabsStyle} role="tablist">
         {tabs.map((tab, index) => (
           <li
             x-bind:class={`{ 'active': activeTab === ${index} }`}
             class={cx(tabStyle, activeTab === index ? "active" : "")}
             key={tab.label}
+            role="presentation"
           >
-            <button x-on:click={`setActiveTab(${index})`}>
+            <button
+              x-on:click={`setActiveTab(${index})`}
+              role="tab"
+              aria-controls={`tab-content-${index}`}
+              id={`tab-${index}`}
+            >
               <Display variant="display4" as="span">
                 {tab.label}
               </Display>
@@ -37,6 +43,10 @@ export default function Tabs({ tabs, activeTab = 0 }: Props) {
         <section
           x-bind:class={`{ 'active': activeTab === ${index} }`}
           class={cx(sectionStyle, activeTab === index ? "active" : "")}
+          key={tab.label}
+          id={`tab-content-${index}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${index}`}
         >
           {tab.content}
         </section>

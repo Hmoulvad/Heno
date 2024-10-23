@@ -1,4 +1,4 @@
-import apiRoutes from "api/routes.ts";
+import apiRoutes from "./api/routes.ts";
 import appRoutes from "app/routes.tsx";
 import { Hono } from "hono";
 

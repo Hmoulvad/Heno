@@ -11,7 +11,7 @@
     "utils/": "./utils/"
   },
   "tasks": {
-    "start": "deno run --allow-net main.ts"
+    "start": "deno run --watch --allow-net main.ts"
   },
   "compilerOptions": {
     "jsx": "precompile",

@@ -1,14 +1,27 @@
 import { css } from "hono/css";
-import Display from "ui/Display.tsx";
-import Tooltip from "ui/Tooltip.tsx";
+import Tabs from "ui/Tabs.tsx";
+import Button from "ui/Button/Button.tsx";
 
 export default function HomePage() {
   return (
     <section class={gapStyle}>
-      <Display as="h1" variant="display3">
-        HomePage
-      </Display>
-      <Tooltip content="This is a Tooltip" message="Message of the Tooltip" />
+      <Tabs
+        activeTab={1}
+        tabs={[
+          {
+            label: "Tab 1",
+            content: <Button>This is Tab1</Button>,
+          },
+          {
+            label: "Tab 2",
+            content: <Button>This is Tab2</Button>,
+          },
+          {
+            label: "Tab 3",
+            content: <Button>This is Tab3</Button>,
+          },
+        ]}
+      />
     </section>
   );
 }

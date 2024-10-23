@@ -6,7 +6,7 @@ export function getButtonStyle({
   fill,
   iconPosition,
 }: Required<Pick<ButtonProps, "fill" | "size" | "iconPosition">>) {
-  let args = [baseStyle];
+  const args = [baseStyle];
   switch (size) {
     case "small":
       args.push(smallStyle);

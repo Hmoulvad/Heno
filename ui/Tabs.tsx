@@ -1,7 +1,6 @@
-import { css } from "hono/css";
+import { css, cx } from "hono/css";
 import type { Child } from "hono/jsx";
 import Display from "ui/Display.tsx";
-import applyConditionalClassAlpine from "utils/alpine/applyConditionalClassAlpine.ts";
 
 type Tab = {
   label: string;
@@ -22,11 +21,8 @@ export default function Tabs({ tabs, activeTab = 0 }: Props) {
       <ul class={tabsStyle}>
         {tabs.map((tab, index) => (
           <li
-            {...applyConditionalClassAlpine({
-              className: "active",
-              condition: `activeTab === ${index}`,
-            })}
-            class={tabStyle}
+            x-bind:class={`{ 'active': activeTab === ${index} }`}
+            class={cx(tabStyle, activeTab === index ? "active" : "")}
             key={tab.label}
           >
             <button x-on:click={`setActiveTab(${index})`}>
@@ -39,12 +35,8 @@ export default function Tabs({ tabs, activeTab = 0 }: Props) {
       </ul>
       {tabs.map((tab, index) => (
         <section
-          {...applyConditionalClassAlpine({
-            className: "shown",
-            condition: `activeTab === ${index}`,
-          })}
-          class={sectionStyle}
-          key={tab.label}
+          x-bind:class={`{ 'active': activeTab === ${index} }`}
+          class={cx(sectionStyle, activeTab === index ? "active" : "")}
         >
           {tab.content}
         </section>
@@ -67,7 +59,7 @@ const tabsStyle = css`
 
 const tabStyle = css`
   transition: border-bottom-color 0.3s;
-  border-bottom: 2px solid transparent;
+  border-bottom: var(--border-size-2) solid transparent;
 
   & > button {
     background: none;
@@ -87,7 +79,7 @@ const tabStyle = css`
 const sectionStyle = css`
   display: none;
 
-  &.shown {
+  &.active {
     display: block;
   }
 `;

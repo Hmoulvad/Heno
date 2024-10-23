@@ -8,6 +8,6 @@ export default function applyConditionalClassAlpine({
   condition,
 }: Args) {
   return {
-    ...{ ["x-bind:class"]: `{'${className}': ${condition}}` },
+    ...{ [":class"]: `{ '${className}': ${condition} }` },
   };
 }

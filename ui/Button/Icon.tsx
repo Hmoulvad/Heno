@@ -23,7 +23,6 @@ export function getButtonStyle({ size }: Required<Pick<ButtonProps, "size">>) {
       args.push(mediumStyle);
       break;
   }
-
   return cx(...args);
 }
 

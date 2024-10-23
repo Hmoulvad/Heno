@@ -1,10 +1,10 @@
 import { css } from "hono/css";
 import type { Child, PropsWithChildren } from "hono/jsx";
-import Button from "ui/Button/Button.tsx";
+import IconButton from "ui/Button/Icon.tsx";
 import Display from "ui/Display.tsx";
 import ArrowLeft from "ui/Icons/Arrow/Left.tsx";
-import generateRef from "utils/generateRef.tsx";
 import ArrowRight from "ui/Icons/Arrow/Right.tsx";
+import generateRef from "utils/generateRef.tsx";
 
 type Props = {
   title: string;
@@ -19,11 +19,11 @@ export default function Carousel({ children, title }: Props) {
           {title}
         </Display>
         <div class={buttonContainerStyle}>
-          <Button
+          <IconButton
             x-on:click={`$refs.${ref}?.scrollTo({ left: 0, behavior: "smooth" })`}
             icon={<ArrowLeft />}
           />
-          <Button
+          <IconButton
             x-on:click={`$refs.${ref}?.scrollTo({ left: $refs.${ref}?.scrollWidth, behavior: "smooth" })`}
             icon={<ArrowRight />}
           />

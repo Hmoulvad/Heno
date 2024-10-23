@@ -1,6 +1,6 @@
 import { css, cx, keyframes } from "hono/css";
 import type { PropsWithChildren } from "hono/jsx";
-import Button from "ui/Button/Button.tsx";
+import IconButton from "ui/Button/Icon.tsx";
 import Display from "ui/Display.tsx";
 import X from "ui/Icons/X.tsx";
 import generateId from "utils/generateId.ts";
@@ -28,11 +28,7 @@ export default function Dialog({
       <div class={contentStyle}>
         <header class={headerStyle}>
           <Display as="h3">{title}</Display>
-          <Button
-            size="small"
-            x-on:click={`$refs.${ref}?.close()`}
-            icon={<X />}
-          />
+          <IconButton x-on:click={`$refs.${ref}?.close()`} icon={<X />} />
         </header>
         <section class={sectionStyle}>{children}</section>
       </div>

@@ -37,7 +37,6 @@ const baseStyle = css`
   border-width: var(--border-size-1);
   border-style: solid;
   transition: background-color 0.2s ease;
-  gap: var(--size-2);
   color: inherit;
   text-decoration: none;
 
@@ -49,7 +48,7 @@ const baseStyle = css`
 const smallStyle = css`
   height: var(--size-7);
   width: var(--size-7);
-  > svg {
+  & > svg {
     height: var(--size-4);
     width: var(--size-4);
   }
@@ -58,7 +57,7 @@ const smallStyle = css`
 const mediumStyle = css`
   height: var(--size-8);
   width: var(--size-8);
-  svg {
+  & > svg {
     height: var(--size-5);
     width: var(--size-5);
   }

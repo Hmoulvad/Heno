@@ -9,12 +9,12 @@ type Props = {
 
 export default function RadioGroup({ label, name, options }: Props) {
   return (
-    <div className={radioGroupStyles}>
-      <Typography>{label}</Typography>
+    <fieldset className={radioGroupStyles}>
+      <Typography as="legend">{label}</Typography>
       {options.map((option) => (
         <Radio name={name} {...option} />
       ))}
-    </div>
+    </fieldset>
   );
 }
 
@@ -23,4 +23,5 @@ const radioGroupStyles = css`
   display: flex;
   flex-direction: column;
   gap: var(--size-2);
+  border: none;
 `;

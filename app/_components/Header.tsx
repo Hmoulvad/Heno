@@ -4,7 +4,7 @@ import Link from "ui/Link.tsx";
 export default function Header() {
   return (
     <header class={headerStyle}>
-      <ul class={linksStyle}>
+      <menu class={linksStyle}>
         <li>
           <Link href="/">Home</Link>
         </li>
@@ -14,7 +14,7 @@ export default function Header() {
         <li>
           <Link href="/form">Form</Link>
         </li>
-      </ul>
+      </menu>
     </header>
   );
 }

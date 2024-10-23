@@ -6,10 +6,16 @@ import Input from "ui/Form/Input.tsx";
 import RadioGroup from "ui/Form/RadioGroup.tsx";
 import Select from "ui/Form/Select.tsx";
 import TextArea from "ui/Form/TextArea.tsx";
+import Typography from "ui/Typography.tsx";
+import Display from "ui/Display.tsx";
 
 export default function FormPage() {
   return (
     <form className={formStyle}>
+      <hgroup>
+        <Display as="h3">This is a basic use of form</Display>
+        <Typography as="p">Please fill in the inputfields</Typography>
+      </hgroup>
       <Input
         placeholder="Search for product..."
         label="Product Search"

@@ -9,12 +9,12 @@ type Props = {
 
 export default function CheckboxGroup({ label, name, options }: Props) {
   return (
-    <div className={checkboxGroupStyles}>
-      <Typography>{label}</Typography>
+    <fieldset className={checkboxGroupStyles}>
+      <Typography as="legend">{label}</Typography>
       {options.map((option) => (
         <Checkbox name={name} {...option} />
       ))}
-    </div>
+    </fieldset>
   );
 }
 
@@ -23,4 +23,5 @@ const checkboxGroupStyles = css`
   display: flex;
   flex-direction: column;
   gap: var(--size-2);
+  border: none;
 `;

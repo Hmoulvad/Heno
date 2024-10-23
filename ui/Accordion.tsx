@@ -2,68 +2,94 @@ import { css } from "hono/css";
 import type { PropsWithChildren } from "hono/jsx";
 import ChevronDown from "ui/Icons/Chevron/Down.tsx";
 import Typography from "ui/Typography.tsx";
+import applyConditionalClassAlpine from "utils/alpine/applyConditionalClassAlpine.ts";
 
 type Props = PropsWithChildren<{
   title: string;
 }>;
 
 export default function Accordion({ title, children }: Props) {
+  const contentId = title;
+
   return (
-    <details class={detailsStyle}>
-      <Typography as="summary" className={summaryStyle}>
-        {title}
-        <ChevronDown />
-      </Typography>
-      {children}
-    </details>
+    <div x-data={`{ open: false }`} className={containerStyles}>
+      <button
+        x-on:click="open = ! open"
+        className={headerStyle}
+        aria-controls={contentId}
+      >
+        <Typography as="span">{title}</Typography>
+        <span
+          class={iconStyle}
+          {...applyConditionalClassAlpine({
+            className: "expanded",
+            condition: "open === true",
+          })}
+        >
+          <ChevronDown />
+        </span>
+      </button>
+      <div
+        id={contentId}
+        className={contentWrapperStyle}
+        role="region"
+        aria-labelledby={contentId}
+        {...applyConditionalClassAlpine({
+          className: "expanded",
+          condition: "open === true",
+        })}
+      >
+        <div className={hiddenContentStyle}>
+          <Typography className={contentStyle}>{children}</Typography>
+        </div>
+      </div>
+    </div>
   );
 }
 
-const detailsStyle = css`
-  width: fit-content;
-  border-width: var(--border-size-1);
-  border-style: solid;
-  padding: var(--size-2);
+const containerStyles = css`
+  width: 100%;
+  display: grid;
+  border: var(--border-size-1) solid white;
   min-height: var(--size-8);
+`;
 
-  &:hover {
-    background-color: var(--gray-9);
-  }
+const headerStyle = css`
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  background-color: transparent;
+  padding-inline: var(--size-3);
+  height: var(--size-8);
+  border: none;
+  justify-content: space-between;
+`;
 
-  &[open] {
-    summary {
-      margin-bottom: 0;
+const iconStyle = css`
+  height: var(--size-4);
+  width: var(--size-4);
+  transition: transform 500ms ease-in-out;
 
-      & > svg {
-        transform: rotate(180deg);
-      }
-    }
+  &.expanded {
+    transform: rotate(180deg);
   }
 `;
 
-const summaryStyle = css`
-  margin: calc(var(--size-2) * -1);
-  padding: var(--size-2);
-  display: block;
-  cursor: pointer;
-  transition: margin 0.5s ease-in-out;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--size-2);
+const contentWrapperStyle = css`
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 500ms ease-in-out;
 
-  & > svg {
-    height: var(--size-4);
-    width: var(--size-4);
-    transform: rotate(0deg);
-    transition: transform 0.5s ease-in-out;
+  &.expanded {
+    grid-template-rows: 1fr;
   }
+`;
 
-  &::marker {
-    display: none;
-  }
+const hiddenContentStyle = css`
+  overflow: hidden;
+`;
 
-  &::-webkit-details-marker {
-    display: none;
-  }
+const contentStyle = css`
+  padding-bottom: var(--size-3);
+  padding-inline: var(--size-3);
 `;

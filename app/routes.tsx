@@ -4,10 +4,20 @@ import RootLayout from "./layout.tsx";
 import HomePage from "./page.tsx";
 import UIPage from "./ui/page.tsx";
 import FormPage from "./form/page.tsx";
+import { cache } from "hono/cache";
 
 const appRoutes = new Hono();
 
 appRoutes
+  // Cache all routes
+  .get(
+    "*",
+    cache({
+      cacheName: "heno",
+      cacheControl: "max-age=3600",
+      wait: true,
+    })
+  )
   // Middleware to add the RootLayout to all routes
   .use(
     "*",

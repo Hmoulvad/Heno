@@ -14,7 +14,7 @@ export default function Breadcrumbs({ path }: Props) {
     <nav aria-label="breadcrumb">
       <ol class={listStyle}>
         <li class={listItemStyle}>
-          <a href="/">
+          <a title="Home" href="/">
             <House />
           </a>
         </li>
